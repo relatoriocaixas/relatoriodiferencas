@@ -192,7 +192,7 @@ async function carregarListaPadrao(){
   }else{
     qy = query(collection(db,'relatorios'),
       where('matricula','==', CURRENT_USER_DATA.matricula),
-      orderBy('dataCaixa','desc'), limit(10));
+      orderBy('dataCaixa','desc'), limit(30));
   }
   const snap = await getDocs(qy);
   renderLista(snap.docs.map(d=> ({id:d.id, ...d.data()})));
