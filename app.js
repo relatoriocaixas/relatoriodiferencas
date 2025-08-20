@@ -188,7 +188,7 @@ async function salvarRelatorioAdmin(){
 async function carregarListaPadrao(){
   let qy;
   if(IS_ADMIN){
-    qy = query(collection(db,'relatorios'), orderBy('dataCaixa','desc'), limit(10));
+    qy = query(collection(db,'relatorios'), orderBy('dataCaixa','desc'), limit(15));
   }else{
     qy = query(collection(db,'relatorios'),
       where('matricula','==', CURRENT_USER_DATA.matricula),
