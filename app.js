@@ -188,11 +188,13 @@ async function salvarRelatorioAdmin(){
 async function carregarListaPadrao(){
   let qy;
   if(IS_ADMIN){
-    qy = query(collection(db,'relatorios'), orderBy('dataCaixa','desc'), limit(31));
+    qy = query(collection(db,'relatorios'), orderBy('dataCaixa','desc'));
   }else{
     qy = query(collection(db,'relatorios'),
       where('matricula','==', CURRENT_USER_DATA.matricula),
-      orderBy('dataCaixa','desc'), limit(30));
+      orderBy('dataCaixa','desc'), 
+      limit(31)
+    );
   }
   const snap = await getDocs(qy);
   renderLista(snap.docs.map(d=> ({id:d.id, ...d.data()})));
