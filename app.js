@@ -188,7 +188,7 @@ async function salvarRelatorioAdmin(){
 async function carregarListaPadrao(){
   let qy;
   if(IS_ADMIN){
-    qy = query(collection(db,'relatorios'), orderBy('dataCaixa','desc'), limit(15));
+    qy = query(collection(db,'relatorios'), orderBy('dataCaixa','desc'), limit(31));
   }else{
     qy = query(collection(db,'relatorios'),
       where('matricula','==', CURRENT_USER_DATA.matricula),
@@ -203,7 +203,7 @@ async function filtrarPorMatricula(){
   if(!IS_ADMIN) return;
   const mat = el('filtroMatricula').value;
   if(!mat){ alert("Selecione uma matrícula."); return; }
-  const qy = query(collection(db,'relatorios'), where('matricula','==',mat), orderBy('dataCaixa','desc'), limit(10));
+  const qy = query(collection(db,'relatorios'), where('matricula','==',mat), orderBy('dataCaixa','desc'), limit(31));
   const snap = await getDocs(qy);
   renderLista(snap.docs.map(d=> ({id:d.id, ...d.data()})));
   el('selectMatriculas').value = mat;
